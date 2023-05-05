@@ -1,0 +1,7 @@
+p4.pdf
+*.o
+webserver
+.cache
+compile_commands.json
+webpages
+*.tgz
