@@ -121,9 +121,9 @@ char *status_string(int status) {
 char *file_extension(char *path) {
     char *ext = strrchr(path, '.');
     if (ext == NULL) return "application/octet-stream";
-    if (!strcmp(ext, ".txt"))  return "text/plain";
-    if (!strcmp(ext, ".html")) return "text/html";
-    if (!strcmp(ext, ".css"))  return "text/css";
+    if (!strcmp(ext, ".txt"))  return "text/plain;charset=utf-8";
+    if (!strcmp(ext, ".html")) return "text/html;charset=utf-8";
+    if (!strcmp(ext, ".css"))  return "text/css;charset=utf-8";
     if (!strcmp(ext, ".jpg"))  return "image/jpeg";
     if (!strcmp(ext, ".jpeg")) return "image/jpeg";
     if (!strcmp(ext, ".png"))  return "image/png";
@@ -154,7 +154,7 @@ char *craft_response(http_response_t *response, int *size) {
         return buffer;
     }
 
-    strcat(buffer, "Content-Type: text/html; charset=utf-8");
+    strcat(buffer, "Content-Type: text/html;charset=utf-8");
     switch (response->status) {
         case HTTP_NOT_IMPLEMENTED: sprintf(buffer + strlen(buffer), "Content-Length: %lu\r\n\r\n%s", strlen(HTML_NOT_IMPLEMENTED), HTML_NOT_IMPLEMENTED); break;
         case HTTP_NOT_FOUND:       sprintf(buffer + strlen(buffer), "Content-Length: %lu\r\n\r\n%s", strlen(HTML_NOT_FOUND)      , HTML_NOT_FOUND);       break;
